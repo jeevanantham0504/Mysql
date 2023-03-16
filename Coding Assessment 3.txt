@@ -1,0 +1,242 @@
+1) Create the following tables
+a) studentprofile(rollno,name,dob,department,city)
+b) marks (rollno,name,mark1,mark2)
+mysql> use practice;
+Database changed
+mysql> create table studentprofile(rollno varchar(20),name varchar(200),dob date,department varchar(200),city varchar(50));
+Query OK, 0 rows affected (0.21 sec)
+mysql> desc studentprofile;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| rollno     | varchar(20)  | YES  |     | NULL    |       |
+| name       | varchar(200) | YES  |     | NULL    |       |
+| dob        | date         | YES  |     | NULL    |       |
+| department | varchar(200) | YES  |     | NULL    |       |
+| city       | varchar(50)  | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+mysql> create table marks(rollno varchar(20),name varchar(200),mark1 double(10,2),mark2 double(10,2));
+Query OK, 0 rows affected, 2 warnings (0.14 sec)
+mysql> desc marks;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| rollno | varchar(20)  | YES  |     | NULL    |       |
+| name   | varchar(200) | YES  |     | NULL    |       |
+| mark1  | double(10,2) | YES  |     | NULL    |       |
+| mark2  | double(10,2) | YES  |     | NULL    |       |
+| total  | double(10,2) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+2) insert 5 different records to the above tables.
+mysql> select * from studentprofile;
++----------+----------+------------+----------------------+--------------+
+| rollno   | name     | dob        | department           | city         |
++----------+----------+------------+----------------------+--------------+
+| rsp13001 | Samuvel  | 1999-07-24 | Software Programming | Virudhunagar |
+| rsp13002 | Sarun    | 2001-06-25 | Software Programming | Tirupur      |
+| rsp13003 | Sanjay   | 2001-12-24 | Software Programming | Tirupur      |
+| rsp13004 | Santhosh | 2001-11-24 | Software Programming | Tirupur      |
+| rsp13005 | Sabari   | 1999-05-05 | Software Programming | Madurai      |
++----------+----------+------------+----------------------+--------------+
+5 rows in set (0.00 sec)
+mysql> select * from marks;
++----------+----------+-------+-------+
+| rollno   | name     | mark1 | mark2 |
++----------+----------+-------+-------+
+| rsp13001 | Samuvel  | 34.00 | 60.00 |
+| rsp13002 | Sarun    | 85.00 | 95.00 |
+| rsp13003 | Sanjay   | 96.00 | 98.00 |
+| rsp13004 | Santhosh | 80.00 | 85.00 |
+| rsp13005 | Sabari   | 87.00 | 90.00 |
++----------+----------+-------+-------+
+5 rows in set (0.00 sec)
+
+3) add a column total to marks table.
+mysql> desc marks;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| rollno | varchar(20)  | YES  |     | NULL    |       |
+| name   | varchar(200) | YES  |     | NULL    |       |
+| mark1  | double(10,2) | YES  |     | NULL    |       |
+| mark2  | double(10,2) | YES  |     | NULL    |       |
+| total  | double(10,2) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+4) change the column name dob to dateofbirth.
+mysql> desc studentprofile;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| rollno      | varchar(20)  | YES  |     | NULL    |       |
+| name        | varchar(200) | YES  |     | NULL    |       |
+| dateofbirth | date         | YES  |     | NULL    |       |
+| department  | varchar(200) | YES  |     | NULL    |       |
+| city        | varchar(50)  | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+5) display the structure of the above tables.
+mysql> desc marks;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| rollno | varchar(20)  | YES  |     | NULL    |       |
+| name   | varchar(200) | YES  |     | NULL    |       |
+| mark1  | double(10,2) | YES  |     | NULL    |       |
+| mark2  | double(10,2) | YES  |     | NULL    |       |
+| total  | double(10,2) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+mysql> desc studentprofile;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| rollno      | varchar(20)  | YES  |     | NULL    |       |
+| name        | varchar(200) | YES  |     | NULL    |       |
+| dateofbirth | date         | YES  |     | NULL    |       |
+| department  | varchar(200) | YES  |     | NULL    |       |
+| city        | varchar(50)  | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+6) List the tables which you have created.
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| customer           |
+| employ             |
+| marks              |
+| order_details      |
+| player             |
+| product            |
+| student            |
+| studentprofile     |
++--------------------+
+8 rows in set (0.00 sec)
+
+7) Calculate total marks for each student and update in marks table.
+mysql> update marks set total=(mark1+mark2);
+Query OK, 5 rows affected (0.11 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+8) remove the 4 th rollno from studentprofile  table.
+mysql> delete from studentprofile where rollno='rsp13004';
+Query OK, 1 row affected (0.06 sec)
+
+9) Display all the records of both the tables.
+mysql> select * from studentprofile;
++----------+---------+-------------+----------------------+--------------+
+| rollno   | name    | dateofbirth | department           | city         |
++----------+---------+-------------+----------------------+--------------+
+| rsp13001 | Samuvel | 1999-07-24  | Software Programming | Virudhunagar |
+| rsp13002 | Sarun   | 2001-06-25  | Software Programming | Tirupur      |
+| rsp13003 | Sanjay  | 2001-12-24  | Software Programming | Tirupur      |
+| rsp13005 | Sabari  | 1999-05-05  | Software Programming | Madurai      |
++----------+---------+-------------+----------------------+--------------+
+4 rows in set (0.00 sec)
+mysql> select * from marks;
++----------+----------+-------+-------+--------+
+| rollno   | name     | mark1 | mark2 | total  |
++----------+----------+-------+-------+--------+
+| rsp13001 | Samuvel  | 34.00 | 60.00 |  94.00 |
+| rsp13002 | Sarun    | 85.00 | 95.00 | 180.00 |
+| rsp13003 | Sanjay   | 96.00 | 98.00 | 194.00 |
+| rsp13004 | Santhosh | 80.00 | 85.00 | 165.00 |
+| rsp13005 | Sabari   | 87.00 | 90.00 | 177.00 |
++----------+----------+-------+-------+--------+
+5 rows in set (0.00 sec)
+
+10) save your changes.
+
+11) add two more columns average and grade
+mysql> alter table marks add average double(10,2);
+Query OK, 0 rows affected, 1 warning (0.27 sec)
+Records: 0  Duplicates: 0  Warnings: 1mysql> alter table marks add grade varchar(6);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> desc marks;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| rollno  | varchar(20)  | YES  |     | NULL    |       |
+| name    | varchar(200) | YES  |     | NULL    |       |
+| mark1   | double(10,2) | YES  |     | NULL    |       |
+| mark2   | double(10,2) | YES  |     | NULL    |       |
+| total   | double(10,2) | YES  |     | NULL    |       |
+| average | double(10,2) | YES  |     | NULL    |       |
+| grade   | varchar(6)   | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+12) calculate the average for all the students.
+mysql> update marks set average=(total/2);
+Query OK, 5 rows affected (0.06 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+mysql> select * from marks;
++----------+----------+-------+-------+--------+---------+-------+
+| rollno   | name     | mark1 | mark2 | total  | average | grade |
++----------+----------+-------+-------+--------+---------+-------+
+| rsp13001 | Samuvel  | 34.00 | 60.00 |  94.00 |   47.00 | NULL  |
+| rsp13002 | Sarun    | 85.00 | 95.00 | 180.00 |   90.00 | NULL  |
+| rsp13003 | Sanjay   | 96.00 | 98.00 | 194.00 |   97.00 | NULL  |
+| rsp13004 | Santhosh | 80.00 | 85.00 | 165.00 |   82.50 | NULL  |
+| rsp13005 | Sabari   | 87.00 | 90.00 | 177.00 |   88.50 | NULL  |
++----------+----------+-------+-------+--------+---------+-------+
+5 rows in set (0.00 sec)
+
+
+13) Calculate the grade (if both the marks are
+above 40 then grade should be pass
+if less than 40 grade should be fail).
+mysql> update marks set grade='Pass' where mark1>40 and mark2>40;
+Query OK, 4 rows affected (0.31 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+mysql> update marks set grade='Fail' where mark1<40 or mark2<40;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> select * from marks;
++----------+----------+-------+-------+--------+---------+-------+
+| rollno   | name     | mark1 | mark2 | total  | average | grade |
++----------+----------+-------+-------+--------+---------+-------+
+| rsp13001 | Samuvel  | 34.00 | 60.00 |  94.00 |   47.00 | Fail  |
+| rsp13002 | Sarun    | 85.00 | 95.00 | 180.00 |   90.00 | Pass  |
+| rsp13003 | Sanjay   | 96.00 | 98.00 | 194.00 |   97.00 | Pass  |
+| rsp13004 | Santhosh | 80.00 | 85.00 | 165.00 |   82.50 | Pass  |
+| rsp13005 | Sabari   | 87.00 | 90.00 | 177.00 |   88.50 | Pass  |
++----------+----------+-------+-------+--------+---------+-------+
+5 rows in set (0.00 sec)
+
+14) Remove the column average .
+mysql> alter table marks drop column average;
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> desc marks;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| rollno | varchar(20)  | YES  |     | NULL    |       |
+| name   | varchar(200) | YES  |     | NULL    |       |
+| mark1  | double(10,2) | YES  |     | NULL    |       |
+| mark2  | double(10,2) | YES  |     | NULL    |       |
+| total  | double(10,2) | YES  |     | NULL    |       |
+| grade  | varchar(6)   | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+15) Remove all the records from the table.
+mysql> truncate table studentprofile;
+Query OK, 0 rows affected (0.43 sec)
+mysql> truncate table marks;
+Query OK, 0 rows affected (0.15 sec)
+
+16) confirm your changes
+mysql> select * from studentprofile;
+Empty set (0.00 sec)
+mysql> select * from studentprofile;
+Empty set (0.00 sec)

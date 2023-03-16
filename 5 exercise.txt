@@ -1,0 +1,244 @@
+11.Display the list of employees who have joined the company before 30th june 80 or after 31 st dec 80
+mysql> select * from employ where join_date <'1980-06-30' or join_date >'1980-12-31';
++-------+---------+------+----------+--------+------------+
+| empid | empname | dept | jobrole  | salary | join_date  |
++-------+---------+------+----------+--------+------------+
+|   101 | Sarun   | 20   | Clerk    |   5000 | 1981-12-31 |
+|   104 | Jully   | 50   | Analyst  |   3000 | 1980-05-20 |
+|   105 | Ramesh  | 60   | Salesman |   4000 | 1980-06-10 |
++-------+---------+------+----------+--------+------------+
+3 rows in set (0.00 sec)
+
+12.Display the name of the current user
+mysql> select current_user();
++----------------+
+| current_user() |
++----------------+
+| root@localhost |
++----------------+
+1 row in set (0.04 sec)
+
+13.Display the names of employees working in department number 10 or 20 and working as clerks , salesman or analyst
+mysql> select * from employ;
++-------+---------+------+----------+--------+------------+
+| empid | empname | dept | jobrole  | salary | join_date  |
++-------+---------+------+----------+--------+------------+
+|   100 | Sabari  | 10   | salesman |   3000 | 1980-12-31 |
+|   101 | Sarun   | 20   | Clerk    |   5000 | 1981-12-31 |
+|   102 | Sam     | 30   | Analyst  |   4000 | 1980-08-25 |
+|   103 | Sanjay  | 40   | Analyst  |   5000 | 1980-06-30 |
+|   104 | Jully   | 50   | Analyst  |   3000 | 1980-05-20 |
+|   105 | Ramesh  | 60   | Salesman |   4000 | 1980-06-10 |
+|   106 | Rahul   | 70   | Clerk    |   5000 | 1980-12-30 |
++-------+---------+------+----------+--------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from employ where dept in('10','20') and jobrole in('Clerk','Salesman')or jobrole in ('Analyst');
++-------+---------+------+----------+--------+------------+
+| empid | empname | dept | jobrole  | salary | join_date  |
++-------+---------+------+----------+--------+------------+
+|   100 | Sabari  | 10   | salesman |   3000 | 1980-12-31 |
+|   101 | Sarun   | 20   | Clerk    |   5000 | 1981-12-31 |
+|   102 | Sam     | 30   | Analyst  |   4000 | 1980-08-25 |
+|   103 | Sanjay  | 40   | Analyst  |   5000 | 1980-06-30 |
+|   104 | Jully   | 50   | Analyst  |   3000 | 1980-05-20 |
++-------+---------+------+----------+--------+------------+
+5 rows in set (0.00 sec)
+
+14.Display the names of employees whose name starts with alphabet “S”
+mysql> select * from employ where empname like 'S%';
++-------+---------+------+----------+--------+------------+
+| empid | empname | dept | jobrole  | salary | join_date  |
++-------+---------+------+----------+--------+------------+
+|   100 | Sabari  | 10   | salesman |   3000 | 1980-12-31 |
+|   101 | Sarun   | 20   | Clerk    |   5000 | 1981-12-31 |
+|   102 | Sam     | 30   | Analyst  |   4000 | 1980-08-25 |
+|   103 | Sanjay  | 40   | Analyst  |   5000 | 1980-06-30 |
++-------+---------+------+----------+--------+------------+
+4 rows in set (0.00 sec)
+
+15.Display employee name from employees whose name ends with alphabet N
+mysql> select * from employ where empname like '%n';
++-------+---------+------+---------+--------+------------+
+| empid | empname | dept | jobrole | salary | join_date  |
++-------+---------+------+---------+--------+------------+
+|   101 | Sarun   | 20   | Clerk   |   5000 | 1981-12-31 |
++-------+---------+------+---------+--------+------------+
+1 row in set (0.00 sec)
+
+16.Display the names of employees whose names have second alphabet A in their names
+mysql> select * from employ where empname like '_a%';
++-------+---------+------+----------+--------+------------+
+| empid | empname | dept | jobrole  | salary | join_date  |
++-------+---------+------+----------+--------+------------+
+|   100 | Sabari  | 10   | salesman |   3000 | 1980-12-31 |
+|   101 | Sarun   | 20   | Clerk    |   5000 | 1981-12-31 |
+|   102 | Sam     | 30   | Analyst  |   4000 | 1980-08-25 |
+|   103 | Sanjay  | 40   | Analyst  |   5000 | 1980-06-30 |
+|   105 | Ramesh  | 60   | Salesman |   4000 | 1980-06-10 |
+|   106 | Rahul   | 70   | Clerk    |   5000 | 1980-12-30 |
++-------+---------+------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+17.Display the names of all tables from the current user
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| customer           |
+| employ             |
+| order_details      |
+| player             |
+| product            |
+| student            |
++--------------------+
+6 rows in set (0.01 sec)
+
+18.Display the unique jobs in emp table
+mysql> select * from employ;
++-------+---------+------+----------+--------+------------+
+| empid | empname | dept | jobrole  | salary | join_date  |
++-------+---------+------+----------+--------+------------+
+|   100 | Sabari  | 10   | salesman |   3000 | 1980-12-31 |
+|   101 | Sarun   | 20   | Clerk    |   5000 | 1981-12-31 |
+|   102 | Sam     | 30   | Analyst  |   4000 | 1980-08-25 |
+|   103 | Sanjay  | 40   | Analyst  |   5000 | 1980-06-30 |
+|   104 | Jully   | 50   | Analyst  |   3000 | 1980-05-20 |
+|   105 | Ramesh  | 60   | Salesman |   4000 | 1980-06-10 |
+|   106 | Rahul   | 70   | Clerk    |   5000 | 1980-12-30 |
++-------+---------+------+----------+--------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select jobrole from employ group by jobrole;
++----------+
+| jobrole  |
++----------+
+| salesman |
+| Clerk    |
+| Analyst  |
++----------+
+3 rows in set (0.02 sec)
+
+19.Display the names of employees who are not working as SALESMAN or CLERK or ANALYST
+mysql> select *from details where jobrole not in ('salesman','clerk');
++-------------+---------------+-----------+---------+--------+------------+
+| employee_id | employee_name | depart_no | jobrole | salary | join_date  |
++-------------+---------------+-----------+---------+--------+------------+
+|         102 | sam           |        30 | analyst |   4000 | 1980-08-25 |
+|         103 | sanjay        |        40 | analyst |   5000 | 1980-06-30 |
+|         104 | jully         |        50 | analyst |   3000 | 1980-05-20 |
++-------------+---------------+-----------+---------+--------+------------+
+3 rows in set (0.00 sec)
+
+20.Display the names and salary of employees in descending order of salary.?
+
+mysql> select *from details order by salary desc;
++-------------+---------------+-----------+----------+--------+------------+
+| employee_id | employee_name | depart_no | jobrole  | salary | join_date  |
++-------------+---------------+-----------+----------+--------+------------+
+|         101 | sarun         |        20 | clerk    |   5000 | 1981-12-31 |
+|         103 | sanjay        |        40 | analyst  |   5000 | 1980-06-30 |
+|         106 | raghul        |        70 | clerk    |   5000 | 1980-12-30 |
+|         102 | sam           |        30 | analyst  |   4000 | 1980-08-25 |
+|         105 | ramesh        |        60 | salesman |   4000 | 1980-06-10 |
+|         100 | sabari        |        10 | salesman |   3000 | 1980-12-31 |
+|         104 | jully         |        50 | analyst  |   3000 | 1980-05-20 |
++-------------+---------------+-----------+----------+--------+------------+
+7 rows in set (0.00 sec)
+
+21.Display the names,job,salary and increased by 15% labbel the column new salary.?
+
+mysql> select employee_name,jobrole,salary, (salary*15/100) as new_salary from details;
++---------------+----------+--------+------------+
+| employee_name | jobrole  | salary | new_salary |
++---------------+----------+--------+------------+
+| sabari        | salesman |   3000 |        450 |
+| sarun         | clerk    |   5000 |        750 |
+| sam           | analyst  |   4000 |        600 |
+| sanjay        | analyst  |   5000 |        750 |
+| jully         | analyst  |   3000 |        450 |
+| ramesh        | salesman |   4000 |        600 |
+| raghul        | clerk    |   5000 |        750 |
++---------------+----------+--------+------------+
+7 rows in set (0.00 sec)
+
+22.Display the name of the employees whose name contains 'LL'.?
+
+mysql> select *from details where employee_name like '%ll%';
++-------------+---------------+-----------+---------+--------+------------+
+| employee_id | employee_name | depart_no | jobrole | salary | join_date  |
++-------------+---------------+-----------+---------+--------+------------+
+|         104 | jully         |        50 | analyst |   3000 | 1980-05-20 |
++-------------+---------------+-----------+---------+--------+------------+
+1 row in set (0.00 sec)
+
+23..Display the name of the employees whose name contain 'A' as 4th character.?
+
+mysql> select *from details where employee_name like '____A%';
++-------------+---------------+-----------+---------+--------+------------+
+| employee_id | employee_name | depart_no | jobrole | salary | join_date  |
++-------------+---------------+-----------+---------+--------+------------+
+|         103 | sanjay        |        40 | analyst |   5000 | 1980-06-30 |
++-------------+---------------+-----------+---------+--------+------------+
+1 row in set (0.00 sec)
+
+25.Display the name,job and salary of the employees whose salary is not in the range of 2000 and 3000.?
+
+mysql> select *from details where salary not between 2000 and 3000;
++-------------+---------------+-----------+----------+--------+------------+
+| employee_id | employee_name | depart_no | jobrole  | salary | join_date  |
++-------------+---------------+-----------+----------+--------+------------+
+|         101 | sarun         |        20 | clerk    |   5000 | 1981-12-31 |
+|         102 | sam           |        30 | analyst  |   4000 | 1980-08-25 |
+|         103 | sanjay        |        40 | analyst  |   5000 | 1980-06-30 |
+|         105 | ramesh        |        60 | salesman |   4000 | 1980-06-10 |
+|         106 | raghul        |        70 | clerk    |   5000 | 1980-12-30 |
++-------------+---------------+-----------+----------+--------+------------+
+5 rows in set (0.00 sec)
+
+26. Display the name and hiredate of the employees who have joined in the year '81'.?
+
+mysql> select *from details where join_date like '1981-12-31';
++-------------+---------------+-----------+---------+--------+------------+
+| employee_id | employee_name | depart_no | jobrole | salary | join_date  |
++-------------+---------------+-----------+---------+--------+------------+
+|         101 | sarun         |        20 | clerk   |   5000 | 1981-12-31 |
++-------------+---------------+-----------+---------+--------+------------+
+1 row in set (0.00 sec)
+
+27.Display the name and hiredate of the employees first half of year in '81'.?
+
+mysql> select *from details where join_date between '1980-06-30' and '1981-06-01';
++-------------+---------------+-----------+----------+--------+------------+
+| employee_id | employee_name | depart_no | jobrole  | salary | join_date  |
++-------------+---------------+-----------+----------+--------+------------+
+|         100 | sabari        |        10 | salesman |   3000 | 1980-12-31 |
+|         102 | sam           |        30 | analyst  |   4000 | 1980-08-25 |
+|         103 | sanjay        |        40 | analyst  |   5000 | 1980-06-30 |
+|         106 | raghul        |        70 | clerk    |   5000 | 1980-12-30 |
++-------------+---------------+-----------+----------+--------+------------+
+4 rows in set (0.00 sec)
+
+
+29. Display the following output
+ename earns sal but wants three times salary
+Example : KING earns 5000 but wants 15000
+
+
+30.Display the details of the employees who have joined in the month of 'MAY'?
+
+mysql> select *from details where join_date like '____-05-%';
++-------------+---------------+-----------+---------+--------+------------+
+| employee_id | employee_name | depart_no | jobrole | salary | join_date  |
++-------------+---------------+-----------+---------+--------+------------+
+|         104 | jully         |        50 | analyst |   3000 | 1980-05-20 |
+|         108 | arun          |        80 | manager |   7000 | 1980-05-01 |
++-------------+---------------+-----------+---------+--------+------------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+
+
